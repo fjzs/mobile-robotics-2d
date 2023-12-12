@@ -1,0 +1,13 @@
+<launch>
+  <arg name="rviz" default="true" />
+
+  <include file="$(find rb5_vision)/launch/rb_camera_main_ocv.launch" />
+
+  <node pkg="april_detection" type="april_detection_node" name="april_detection_node" output="screen"/>
+
+  <!-- <node pkg="rb5_control" type="cmd_vel_to_mpi.py" name="cmd_vel_to_mpi" output="screen"/> -->
+
+  <!-- Rviz visulize -->
+  <!-- <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(find rb5_vision)/rviz/rb5.rviz" output="screen"/> -->
+
+</launch>

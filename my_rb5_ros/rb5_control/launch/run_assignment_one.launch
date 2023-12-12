@@ -1,0 +1,24 @@
+<launch>
+  <node pkg="rb5_control" type="cmd_vel_to_mpi.py" name="cmd_to_motor" output="screen">
+    <param name="vehicle_id" value="rb5"/>
+    <param name="max_linear_speed" value="100"/>
+    <param name="max_angular_speed" value="70"/>
+    <!--in centimeters vehicle specific-->
+    <param name="wheel_radius" value="0.033"/> 
+    <param name="length_x" value="0.06"/>
+    <param name="length_y" value="0.08"/>
+  </node>
+
+  <node pkg="rb5_control" type="mpi_control_cmd.py" name="mpi_control_node" output="screen">
+    <param name="vehicle_id" value="rb5"/>
+    <param name="max_linear_speed" value="100"/>
+    <param name="max_angular_speed" value="70"/>
+
+    <!--PID params and dt 0.09 0.005 0.004-->
+    <param name="Kp" value="0.09"/> 
+    <param name="Ki" value="0.005"/>
+    <param name="Kd" value="0.002"/>
+    <param name="dt" value="0.2"/>
+    <param name="sleep_time" value="0.1"/>
+  </node>
+</launch>

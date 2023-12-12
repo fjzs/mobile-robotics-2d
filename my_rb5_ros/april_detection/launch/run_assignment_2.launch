@@ -1,0 +1,24 @@
+<launch>
+  <arg name="rviz" default="true" />
+
+  <include file="$(find rb5_vision)/launch/rb_camera_main_ocv.launch" />
+
+  <node pkg="april_detection" type="april_detection_node" name="april_detection_node" />
+  
+  <node pkg="tf" type="static_transform_publisher" name="body_to_camera_0" args="0 0 0 1.5708 -1.5708 0 camera_0 body_0 10" />
+  <node pkg="tf" type="static_transform_publisher" name="world_to_marker_0" args="1.2 0 0 -1.5708 0 -1.5708 world marker_0 10" />
+
+
+  <node pkg="tf" type="static_transform_publisher" name="body_to_camera_1" args="0 0 0 1.5708 -1.5708 0 camera_1 body_1 10" />
+  <node pkg="tf" type="static_transform_publisher" name="world_to_marker_1" args="0 3 0 0 0 -1.5708 world marker_1 10" />
+
+  
+  <node pkg="tf" type="static_transform_publisher" name="body_to_camera_2" args="0 0 0 1.5708 -1.5708 0 camera_2 body_2 10" />
+  <node pkg="tf" type="static_transform_publisher" name="world_to_marker_2" args="1 -0.7 0 3.14 0 -1.5708 world marker_2 10" />
+  
+
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(find rb5_vision)/rviz/rb5.rviz" output="screen"/>
+  
+
+  <include file="$(find rb5_control)/launch/run_assignment_one.launch" />
+</launch>

@@ -1,0 +1,17 @@
+<launch>
+  <arg name="rviz" default="false" />
+
+  <include file="$(find rb5_vision)/launch/rb_camera_main_ocv.launch" />
+
+  <node pkg="april_detection" type="april_detection_node" name="april_detection_node" output="screen"/>
+
+  <node pkg="rb5_control" type="cmd_vel_to_mpi.py" name="cmd_vel_to_mpi" output="screen"/>
+
+  <node pkg="rb5_slam" type="slam.py" name="slam_node" output="screen">
+    <param name="iteration" value="1"/>
+    <param name="waypoints" value="[(1,0,0)]"/>
+  </node>
+
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(find rb5_vision)/rviz/rb5_3.rviz" output="screen"/>
+
+</launch>
